@@ -1,0 +1,486 @@
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Insets;
+import java.awt.Cursor;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+public class Calculadora extends JFrame {
+		private JTextField TextField;
+		private JLabel label;
+		private BigDecimal tempNum = new BigDecimal("0");
+		private String action = "";
+		private Boolean i = false;
+		
+
+		public Calculadora() {
+			
+			super();
+			setResizable(false);
+			getContentPane().setBackground(new Color(175, 175, 216));
+			setTitle("CalCULOdora"); // nombre ventana
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // para que se pare el programa al cerrar pestaña
+			
+			this.setVisible(true);
+			this.setLocation(400, 300); // posicion
+			this.setSize(307,484); // tamaño 
+			getContentPane().setLayout(null);
+			
+			TextField = new JTextField();
+			TextField.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			TextField.setMargin(new Insets(16, 2, 0, 2));
+			TextField.setHorizontalAlignment(SwingConstants.RIGHT);
+			TextField.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 35));
+			TextField.setEditable(false);
+			TextField.setText("0");
+			TextField.setBackground(new Color(240, 240, 240));
+			TextField.setBounds(83, 11, 197, 67);
+			getContentPane().add(TextField);
+			TextField.setColumns(10);
+			
+			JButton siete = new JButton("7");
+			siete.setFocusable(false);
+			siete.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0") || i == true) {
+						TextField.setText("7");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"7");
+					}
+					
+				}
+			});
+			siete.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			siete.setForeground(new Color(128, 128, 192));
+			siete.setBackground(new Color(255, 215, 235));
+			siete.setBounds(10, 89, 60, 60);
+			getContentPane().add(siete);
+			
+			JButton ocho = new JButton("8");
+			ocho.setFocusable(false);
+			ocho.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("8");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"8");
+					}
+					
+				}
+			});
+			ocho.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			ocho.setForeground(new Color(128, 128, 192));
+			ocho.setBackground(new Color(255, 215, 235));
+			ocho.setBounds(80, 89, 60, 60);
+			getContentPane().add(ocho);
+			
+			JButton nueve = new JButton("9");
+			nueve.setFocusable(false);
+			nueve.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("9");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"9");
+					}
+					
+				}
+			});
+			nueve.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			nueve.setForeground(new Color(128, 128, 192));
+			nueve.setBackground(new Color(255, 215, 235));
+			nueve.setBounds(150, 89, 60, 60);
+			getContentPane().add(nueve);
+			
+			JButton mas = new JButton("+");
+			mas.setFocusable(false);
+			mas.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(action.equals("")) {
+						tempNum=new BigDecimal(TextField.getText());
+						label.setText(tempNum+"");
+						TextField.setText("0");
+					} else {
+						Actions();
+					}
+					action="+";
+				}
+			});
+			mas.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			mas.setForeground(new Color(128, 128, 192));
+			mas.setBackground(new Color(255, 174, 215));
+			mas.setBounds(220, 89, 60, 60);
+			getContentPane().add(mas);
+			
+			JButton seis = new JButton("6");
+			seis.setFocusable(false);
+			seis.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("6");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"6");
+					}
+					
+				}
+			});
+			seis.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			seis.setForeground(new Color(128, 128, 192));
+			seis.setBackground(new Color(255, 215, 235));
+			seis.setBounds(150, 160, 60, 60);
+			getContentPane().add(seis);
+			
+			JButton menos = new JButton("-");
+			menos.setFocusable(false);
+			menos.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(action.equals("")) {
+						tempNum=new BigDecimal(TextField.getText());
+						label.setText(tempNum+"");
+						TextField.setText("0");
+					} else {
+						Actions();
+					}
+					action="-";
+				}
+			});
+			menos.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			menos.setForeground(new Color(128, 128, 192));
+			menos.setBackground(new Color(255, 174, 215));
+			menos.setBounds(220, 160, 60, 60);
+			getContentPane().add(menos);
+			
+			JButton cinco = new JButton("5");
+			cinco.setFocusable(false);
+			cinco.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("5");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"5");
+					}
+					
+				}
+			});
+			cinco.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			cinco.setForeground(new Color(128, 128, 192));
+			cinco.setBackground(new Color(255, 215, 235));
+			cinco.setBounds(80, 160, 60, 60);
+			getContentPane().add(cinco);
+			
+			JButton cuatro = new JButton("4");
+			cuatro.setFocusable(false);
+			cuatro.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("4");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"4");
+					}
+					
+				}
+			});
+			cuatro.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			cuatro.setForeground(new Color(128, 128, 192));
+			cuatro.setBackground(new Color(255, 215, 235));
+			cuatro.setBounds(10, 160, 60, 60);
+			getContentPane().add(cuatro);
+			
+			JButton tres = new JButton("3");
+			tres.setFocusable(false);
+			tres.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0")  || i == true) {
+						TextField.setText("3");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"3");
+					}
+					
+				}
+			});
+			tres.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			tres.setForeground(new Color(128, 128, 192));
+			tres.setBackground(new Color(255, 215, 235));
+			tres.setBounds(150, 231, 60, 60);
+			getContentPane().add(tres);
+			
+			JButton multi = new JButton("x");
+			multi.setFocusable(false);
+			multi.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(action.equals("")) {
+						tempNum=new BigDecimal(TextField.getText());
+						label.setText(tempNum+"");
+						TextField.setText("0");
+					} else {
+						Actions();
+					}
+					action="x";
+				}
+			});
+			multi.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			multi.setForeground(new Color(128, 128, 192));
+			multi.setBackground(new Color(255, 174, 215));
+			multi.setBounds(220, 231, 60, 60);
+			getContentPane().add(multi);
+			
+			JButton dos = new JButton("2");
+			dos.setFocusable(false);
+			dos.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0") || i == true) {
+						TextField.setText("2");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"2");
+					}
+					
+				}
+			});
+			dos.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			dos.setForeground(new Color(128, 128, 192));
+			dos.setBackground(new Color(255, 215, 235));
+			dos.setBounds(80, 231, 60, 60);
+			getContentPane().add(dos);
+			
+			JButton uno = new JButton("1");
+			uno.setFocusable(false);
+			uno.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(TextField.getText().equals("0") || i == true) {
+						TextField.setText("1");
+						i = false;
+					}else {
+						TextField.setText(TextField.getText()+"1");
+					}
+					
+				}
+				
+			});
+			uno.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			uno.setForeground(new Color(128, 128, 192));
+			uno.setBackground(new Color(255, 215, 235));
+			uno.setBounds(10, 231, 60, 60);
+			getContentPane().add(uno);
+			
+			JButton divi = new JButton("/");
+			divi.setFocusable(false);
+			divi.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(action.equals("")) {
+						tempNum=new BigDecimal(TextField.getText());
+						label.setText(tempNum+"");
+						TextField.setText("0");
+					} else {
+						Actions();
+					}
+					action="/";
+				}
+			});
+			divi.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			divi.setForeground(new Color(128, 128, 192));
+			divi.setBackground(new Color(255, 174, 215));
+			divi.setBounds(220, 304, 60, 60);
+			getContentPane().add(divi);
+			
+			JButton PuntoComa = new JButton(".");
+			PuntoComa.setFocusable(false);
+			PuntoComa.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(!TextField.getText().contains(".")) {
+						if (i == true) {
+							TextField.setText("0.");
+							 i = false;
+						} else TextField.setText(TextField.getText()+".");
+					}
+					
+				}
+			});
+			PuntoComa.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 37));
+			PuntoComa.setForeground(new Color(128, 128, 192));
+			PuntoComa.setBackground(new Color(255, 174, 215));
+			PuntoComa.setBounds(10, 304, 60, 60);
+			getContentPane().add(PuntoComa);
+			
+			JButton MasMenos = new JButton("±");
+			MasMenos.setFocusable(false);
+			MasMenos.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BigDecimal n = new BigDecimal(TextField.getText());
+					TextField.setText(n.negate()+"");
+				}
+			});
+			MasMenos.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			MasMenos.setForeground(new Color(128, 128, 192));
+			MasMenos.setBackground(new Color(255, 174, 215));
+			MasMenos.setBounds(150, 304, 60, 60);
+			getContentPane().add(MasMenos);
+			
+			JButton cero = new JButton("0");
+			cero.setFocusable(false);
+			cero.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(i == true) {
+						TextField.setText("0");
+						i=false;
+					} else if (!TextField.getText().equals("0")) {
+						TextField.setText(TextField.getText()+"0");
+					}
+					
+				}
+			});
+			cero.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 17));
+			cero.setForeground(new Color(128, 128, 192));
+			cero.setBackground(new Color(255, 215, 235));
+			cero.setBounds(80, 304, 60, 60);
+			getContentPane().add(cero);
+			
+			JButton igual = new JButton("=");
+			igual.setFocusable(false);
+			igual.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(!action.equals("")) {
+						Actions();
+						TextField.setText(label.getText());
+						label.setText("");
+						action = "";
+					}
+					i = true;
+				}
+			});
+			igual.setForeground(new Color(128, 128, 192));
+			igual.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 46));
+			igual.setBackground(new Color(255, 174, 215));
+			igual.setBounds(150, 374, 130, 60);
+			getContentPane().add(igual);
+			
+			label = new JLabel("");
+			label.setForeground(new Color(255, 215, 235));
+			label.setBackground(new Color(255, 215, 235));
+			label.setFont(new Font("Yu Gothic", Font.PLAIN, 25));
+			label.setBounds(10, 33, 63, 41);
+			getContentPane().add(label);
+			
+			JButton delete = new JButton("DEL");
+			delete.setFocusable(false);
+			delete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					TextField.setText("0");
+					label.setText("");
+					action="";
+					tempNum=new BigDecimal(0);
+				}
+			});
+			delete.setForeground(new Color(128, 128, 192));
+			delete.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
+			delete.setBackground(new Color(255, 174, 215));
+			delete.setBounds(80, 375, 60, 60);
+			getContentPane().add(delete);
+			
+			JButton clear = new JButton("C");
+			clear.setFocusable(false);
+			clear.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					TextField.setText("0");
+					action="";
+					tempNum=new BigDecimal(0);
+				}
+			});
+			clear.setForeground(new Color(128, 128, 192));
+			clear.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 30));
+			clear.setBackground(new Color(255, 174, 215));
+			clear.setBounds(10, 374, 60, 60);
+			getContentPane().add(clear);
+			
+			repaint();
+			revalidate();
+			
+			/*public MiVentanaPrincipal(String titulo) {
+				this();
+				this.setTitle(titulo);
+			}*/
+		}
+		
+		private void Actions() {
+			BigDecimal t = new BigDecimal(TextField.getText());
+			switch(action) {
+			case "+":
+				tempNum = tempNum.add(t);
+				label.setText(tempNum+"");
+				TextField.setText("0");
+				break;
+			case "-":
+				tempNum = tempNum.subtract(t);
+				label.setText(tempNum+"");
+				TextField.setText("0");
+				break;
+			case "/":
+				try {
+					tempNum = tempNum.divide(t, 4, RoundingMode.HALF_UP);
+					label.setText(tempNum+"");
+					TextField.setText("0");
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "ERROR AL DIVIDIR ENTRE 0");
+					TextField.setText("0");
+					action="";
+					label.setText("");
+					tempNum=new BigDecimal(0);
+				}
+				break;
+			case "x":
+				tempNum = tempNum.multiply(t);
+				label.setText(tempNum+"");
+				TextField.setText("0");
+				break;
+			}
+			
+		}
+}
