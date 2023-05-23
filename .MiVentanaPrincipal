@@ -14,7 +14,7 @@ public class MiVentanaPrincipal extends JFrame {
 	public MiVentanaPrincipal() {
 		
 		super();
-		setTitle("Rafa Caraculo"); // nombre ventana
+		setTitle("Simple Calculator"); // nombre ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // para que se pare el programa al cerrar pestaña
 		
 		this.setVisible(true);
